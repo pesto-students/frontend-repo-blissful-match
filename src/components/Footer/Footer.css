@@ -1,0 +1,76 @@
+.footer {
+    background-color: #fff;
+    padding: 40px;
+    border-top: 1px solid #ccc;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    margin-left:100px
+}
+
+.logo-img {
+    width: 350px; /* Adjust width as necessary */
+}
+
+.newsletter-section {
+    display: flex;
+    align-items: center;
+    width:550px;
+}
+
+.newsletter-section input[type="email"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.newsletter-section button {
+    padding: 10px 20px;
+    background-color: #ff7f50;
+    border: 1px solid #ff7f50;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.newsletter-section button:hover {
+    background-color: #ff6347;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    color: #4f4f4f;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #4f4f4f;
+    font-size: 1rem;
+}

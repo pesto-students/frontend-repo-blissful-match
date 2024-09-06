@@ -1,0 +1,15 @@
+export const RASHI_VALUE = [
+    { value: 'ARIES (MESH)', key: 'ARIES (MESH)' },
+    { value: 'TAURUS (VARISHABH)', key: 'TAURUS (VARISHABH)' },
+    { value: 'GEMINI (MITHUN)', key: 'GEMINI (MITHUN)' },
+    { value: 'CANCER (KARK)', key: 'CANCER (KARK)' },
+    { value: 'LEO (SIMHA)', key: 'LEO (SIMHA)' },
+    { value: 'VIRGO (KANYA)', key: 'VIRGO (KANYA)' },
+    { value: 'LIBRA (TULA)', key: 'LIBRA (TULA)' },
+    { value: 'SCORPIO (VRISHCHIK)', key: 'SCORPIO (VRISHCHIK)' },
+    { value: 'SAGITTARIUS (DHANU)', key: 'SAGITTARIUS (DHANU)' },
+    { value: 'CAPRICORN (MAKAR)', key: 'CAPRICORN (MAKAR)' },
+    { value: 'AQUARIUS (KUMBH)', key: 'AQUARIUS (KUMBH)' },
+    { value: 'PISCES (MEEN)', key: 'PISCES (MEEN)' },
+    { value: "DON'T KNOW", key: "DON'T KNOW" },
+];
