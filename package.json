@@ -18,15 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pesto-students/frontend-repo-blissful-match"
+    "url": "git+https://github.com/anilmsaini/blissful-match-frontend.git"
   },
   "keywords": [],
   "author": "Blissful Match",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pesto-students/frontend-repo-blissful-match/issues"
+    "url": "https://github.com/anilmsaini/blissful-match-frontend/issues"
   },
-  "homepage": "https://github.com/pesto-students/frontend-repo-blissful-match",
+  "homepage": "https://github.com/anilmsaini/blissful-match-frontend",
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
