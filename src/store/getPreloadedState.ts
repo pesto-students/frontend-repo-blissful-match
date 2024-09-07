@@ -11,6 +11,9 @@ const getPreloadedState = (): PartialRootState => {
             info: userInfo ? JSON.parse(userInfo) : undefined,
             token: localStorage.getItem('token'),
         },
+        IsLoading: {
+            isLoading: false,
+        },
     };
 };
 

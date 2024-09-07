@@ -1,7 +1,9 @@
 import * as React from 'react';
 import brideImg from '@assets/images/best-tanks-tops-8 1.png';
+import { getMembersProfile } from '../../api';
 
-function MemberProfile() {
+const MemberProfile: React.FC = () => {
+    const [profile, setProfile] = React.useState();
     const images = [
         brideImg,
         brideImg,
@@ -17,6 +19,17 @@ function MemberProfile() {
     const handleImageClick = (image: string) => {
         setSelectedImage(image);
     };
+
+    const fetchMembersProfile = async (userId: string) => {
+        setProfile(await getMembersProfile(userId));
+    };
+
+    React.useEffect(() => {
+        if (!profile) {
+            fetchMembersProfile('');
+        }
+    });
+
     const profileData = {
         name: 'POOJA L.',
         age: 30,
@@ -336,5 +349,6 @@ function MemberProfile() {
             </div>
         </>
     );
-}
+};
+
 export default MemberProfile;

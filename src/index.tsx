@@ -22,6 +22,7 @@ import ChangePassword from './pages/Auth/ChangePasswordPage';
 import Register from './pages/Auth/RegisterPage';
 import MyProfilePage from './pages/MyProfile';
 import { ToDoList } from '@components/ToDo/ToDoList';
+import LoaderComponent from '@components/LoaderComponent/LoaderComponent';
 
 const router = createBrowserRouter([
     {
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
         element: <MemberProfilePage />,
     },
     {
-        path: '/myProfile',
+        path: '/my-profile',
         element: <MyProfilePage />,
     },
     {
@@ -92,7 +93,6 @@ const router = createBrowserRouter([
 
 (async () => {
     const preloadedState = getPreloadedState();
-
     const root = createRoot(document.getElementById('root'));
 
     root.render(
@@ -100,6 +100,7 @@ const router = createBrowserRouter([
             <ReduxProvider store={configureAppStore(preloadedState)}>
                 <AppContextProvider>
                     <RouterProvider router={router} />
+                    <LoaderComponent></LoaderComponent>
                 </AppContextProvider>
             </ReduxProvider>
         </React.StrictMode>

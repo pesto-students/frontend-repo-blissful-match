@@ -10,21 +10,46 @@ import { SearchRequest } from '../../../api/models';
 import { postSearchRequest } from '../../../api';
 import { Profile } from '../Profile';
 import { loggedInUser } from '@store/LoggedInUser/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadingStarted, loadingStopped } from '@store/IsLoading/reducer';
 
 const MembersListFilter: React.FC<{
     onListUpdate: (newProfiles: Array<Profile>) => void;
 }> = ({ onListUpdate }) => {
+    const dispatch = useDispatch();
+    const [initialSearch] = useState(localStorage.getItem('search'));
+    const [beginningSearch, setBeginningSearch] = useState(
+        initialSearch ? JSON.parse(initialSearch) : undefined
+    );
     const loggedInUserInfo = useSelector(loggedInUser);
+    const [lookingFor, setLookingFor] = useState(
+        loggedInUserInfo?.gender === 'Male' ? 'Female' : 'Male'
+    );
+    const [religion, setReligion] = useState('');
+
+    React.useEffect(() => {
+        if (beginningSearch) {
+            setLookingFor(
+                loggedInUser && beginningSearch?.lookingFor === 'Male'
+                    ? 'Male'
+                    : 'Female'
+            );
+            setReligion(beginningSearch.religion);
+        }
+    });
+
     const [formData, setFormData] = useState<SearchRequest>({
         currentPage: 1,
         pageSize: 10,
         search: {
-            gender: loggedInUserInfo?.gender === 'Male' ? 'Female' : 'Male',
-            age: { min: 1, max: 35 },
+            gender: lookingFor,
+            age: {
+                min: beginningSearch ? beginningSearch.ageFrom : 18,
+                max: beginningSearch ? beginningSearch.ageTo : 35,
+            },
             username: '',
             maritial_status: '',
-            religion: '',
+            religion: religion,
             caste: '',
             sub_caste: '',
             mother_tounge: '',
@@ -67,9 +92,11 @@ const MembersListFilter: React.FC<{
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+        e?.preventDefault();
         try {
+            dispatch(loadingStarted(true));
             const response = await postSearchRequest(formData);
+            dispatch(loadingStopped());
             // console.log('Response:', response);
             onListUpdate(response);
         } catch (error) {
@@ -133,6 +160,13 @@ const MembersListFilter: React.FC<{
             },
         }));
     };
+
+    React.useEffect(() => {
+        if (beginningSearch) {
+            handleSubmit(undefined);
+            setBeginningSearch(undefined);
+        }
+    });
 
     return (
         <div className="w-full p-4 bg-bm-gray border border-gray-200 rounded-lg shadow-lg  advance-filter">

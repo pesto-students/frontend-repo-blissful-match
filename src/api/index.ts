@@ -21,6 +21,8 @@ const getPlansURL = `${process.env['REACT_APP_API_ROOT_URL']}plans/get-plans`;
 const generateOrderURL = `${process.env['REACT_APP_API_ROOT_URL']}payment/generate-order`;
 const verifySignatureURL = `${process.env['REACT_APP_API_ROOT_URL']}payment/generate-order`;
 const getShortListedUserURL = `${process.env['REACT_APP_API_ROOT_URL']}user/get-shortlist-users`;
+const getProfileURL = `${process.env['REACT_APP_API_ROOT_URL']}user/get-my-profile`;
+const getMembersProfileURL = `${process.env['REACT_APP_API_ROOT_URL']}user/get-member-profile`;
 const getViewHistoryURL = `${process.env['REACT_APP_API_ROOT_URL']}user/my-viewed-history`;
 const addToShortListURL = `${process.env['REACT_APP_API_ROOT_URL']}user/add-shortlist`;
 const removeFromShortListURL = `${process.env['REACT_APP_API_ROOT_URL']}user/remove-shortlist`;
@@ -76,6 +78,41 @@ export async function getShortListedUser(
 
         if (response.data.data) {
             return MapUserProfilesToProfiles(response.data.data);
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+export async function getMembersProfile(
+    userId: string,
+    url: string = getMembersProfileURL
+) {
+    try {
+        const response = await axios.get(`${url}??user_id=${userId}`, {
+            headers: GetDefaultHeaders(),
+        });
+
+        if (response.data.data) {
+            return response.data.data;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+export async function getMyProfile(url: string = getProfileURL) {
+    try {
+        const response = await axios.get(`${url}`, {
+            headers: GetDefaultHeaders(),
+        });
+
+        if (response.data.data) {
+            return response.data.data;
         } else {
             return [];
         }

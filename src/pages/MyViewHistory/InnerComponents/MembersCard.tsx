@@ -32,9 +32,9 @@ const MembersCard: React.FC<{ profile: Profile }> = ({
                             />
                         </button>
                     </div>
-                    <div className="w-full ml-7 mt-2">
-                        <p>{profile.name}</p>
-                        <p>{profile.location}</p>
+                    <div className="w-full mt-2 text-center">
+                        <p className="text-center">{profile.name}</p>
+                        <p className="text-center">{profile.location}</p>
                     </div>
                     <button className="mt-4 w-11/12 bg-gray-400 text-white py-2 rounded-lg">
                         <NavLink to="/profile/1">View Profile</NavLink>

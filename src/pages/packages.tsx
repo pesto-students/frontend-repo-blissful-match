@@ -13,7 +13,9 @@ export function Packages() {
     const [RazorPay] = useRazorPay();
 
     React.useEffect(() => {
-        getPlanDetails();
+        if (!plans || plans.length === 0) {
+            getPlanDetails();
+        }
     });
 
     const getPlanDetails = async () => {
