@@ -33,9 +33,9 @@ const MembersList: React.FC = () => {
                         />
                     </div>
                     <div className="mt-2 sm:mt-0">
-                        <button className="bg-bm-secondary text-white px-4 py-2 rounded-lg w-full sm:w-auto">
+                        {/* <button className="bg-bm-secondary text-white px-4 py-2 rounded-lg w-full sm:w-auto">
                             Sort: Age
-                        </button>
+                        </button> */}
                     </div>
                 </header>
 

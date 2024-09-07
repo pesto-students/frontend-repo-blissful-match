@@ -35,6 +35,9 @@ describe('test selectAllTasks', () => {
                 },
                 token: '',
             },
+            IsLoading: {
+                isLoading: false,
+            },
         });
 
         expect(allTasks.length).toBe(1);

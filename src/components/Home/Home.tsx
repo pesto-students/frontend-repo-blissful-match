@@ -16,17 +16,25 @@ import appStore from '@assets/images/app-store.png';
 import bmLogo from '@assets/images/bm-logo.png';
 import bestmatches from '@assets/images/Best Matches.png';
 import verifiedprofile from '@assets/images/Verified Profile.png';
+import { RELIGION } from '@constants/RELIGION';
 import privacy from '@assets/images/privacy.png';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        lookingFor: '',
-        ageFrom: '',
-        ageTo: '',
+        lookingFor: 'Female',
+        ageFrom: 18,
+        ageTo: 25,
         religion: '',
         location: '',
     });
+
+    const letsBegin = () => {
+        localStorage.setItem('search', JSON.stringify(formData));
+        navigate('/members');
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleChange = (e: { target: { name: any; value: any } }) => {
@@ -62,60 +70,94 @@ function Home() {
 
                             <div className="flex flex-wrap gap-5 mb-4">
                                 <div className="flex-1 w-full max-md:w-full">
-                                    <input
+                                    <select
+                                        className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
+                                        name="lookingFor"
+                                        value={formData.lookingFor}
+                                        onChange={handleChange}
+                                    >
+                                        <option value={`Male`}>
+                                            {'Groom'}
+                                        </option>
+                                        <option value={`Female`}>
+                                            {'Bride'}
+                                        </option>
+                                    </select>
+                                    {/* <input
                                         type="text"
                                         name="lookingFor"
                                         value={formData.lookingFor}
                                         onChange={handleChange}
                                         placeholder="Women"
                                         className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
+                                    /> */}
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap gap-5 mb-4">
+                                <div className="flex-1 text-teal-300 text-2xl  max-md:text-xl">
+                                    Age Between
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap gap-5 w-full max-md:w-full">
+                                <div className="flex-1 w-full max-md:w-full">
+                                    <input
+                                        type="number"
+                                        name="ageFrom"
+                                        value={formData.ageFrom}
+                                        onChange={handleChange}
+                                        placeholder="25"
+                                        className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
                                     />
                                 </div>
-                                <div className="flex flex-wrap gap-5 w-full max-md:w-full">
-                                    <div className="flex-1 w-full max-md:w-full">
-                                        <input
-                                            type="number"
-                                            name="ageFrom"
-                                            value={formData.ageFrom}
-                                            onChange={handleChange}
-                                            placeholder="25"
-                                            className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
-                                        />
-                                    </div>
-                                    <div className="flex-1 w-full max-md:w-full">
-                                        <input
-                                            type="number"
-                                            name="ageTo"
-                                            value={formData.ageTo}
-                                            onChange={handleChange}
-                                            placeholder="30"
-                                            className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
-                                        />
-                                    </div>
+                                <div className="flex-1 w-full max-md:w-full">
+                                    <input
+                                        type="number"
+                                        name="ageTo"
+                                        value={formData.ageTo}
+                                        onChange={handleChange}
+                                        placeholder="30"
+                                        className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
+                                    />
                                 </div>
                             </div>
 
-                            <div className="flex flex-wrap gap-5 mb-4">
+                            <div className="flex flex-wrap gap-5 mb-4 mt-4">
                                 <div className="flex-1 text-teal-300 text-2xl  max-md:text-xl">
                                     Of Religion
                                 </div>
-                                <div className="flex-1 text-teal-300 text-2xl  max-md:text-xl">
+                                {/* <div className="flex-1 text-teal-300 text-2xl  max-md:text-xl">
                                     And living in
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className="flex flex-wrap gap-5 mb-4">
                                 <div className="flex-1 w-full max-md:w-full">
-                                    <input
+                                    <select
+                                        className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
+                                        name="religion"
+                                        value={formData.religion}
+                                        onChange={handleChange}
+                                    >
+                                        <option value={null}>Select</option>
+                                        {RELIGION.map((item) => (
+                                            <option
+                                                key={item.key}
+                                                value={item.value}
+                                            >
+                                                {item.key}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    {/* <input
                                         type="text"
                                         name="religion"
                                         value={formData.religion}
                                         onChange={handleChange}
                                         placeholder="Select"
-                                        className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
-                                    />
+                                        className=""
+                                    /> */}
                                 </div>
-                                <div className="flex-1 w-full max-md:w-full">
+                                {/* <div className="flex-1 w-full max-md:w-full">
                                     <input
                                         type="text"
                                         name="location"
@@ -124,13 +166,14 @@ function Home() {
                                         placeholder="Mumbai"
                                         className="w-full p-4 text-lg text-gray-700 bg-white rounded-xl shadow-inner focus:outline-none"
                                     />
-                                </div>
+                                </div> */}
                             </div>
 
-                            <div className="px-16 btn-cus pt-4 pb-4 mt-5 text-2xl font-medium bg-sky-200 rounded-xl shadow-lg text-neutral-600 flex items-center justify-center max-md:px-5 max-md:w-full">
+                            <div className="cursor-pointer px-16 btn-cus pt-4 pb-4 mt-5 text-2xl font-medium bg-sky-200 rounded-xl shadow-lg text-neutral-600 flex items-center justify-center max-md:px-5 max-md:w-full">
                                 <button
+                                    onClick={letsBegin}
                                     type="submit"
-                                    className="bg-transparent border-none outline-none text-lg font-medium text-neutral-600"
+                                    className="bg-transparent border-none outline-none hover:bg-sky-200 text-lg font-medium text-neutral-600"
                                 >
                                     Let’s Begin
                                 </button>

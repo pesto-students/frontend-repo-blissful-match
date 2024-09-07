@@ -13,6 +13,7 @@ import { logOut } from '@store/LoggedInUser/reducer';
 
 const Navbar: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const [showUserDropdown, setShowUserDropdown] = React.useState(false);
     const navigate = useNavigate();
     const info = useSelector(loggedInUser);
     const dispatch = useDispatch();
@@ -45,6 +46,9 @@ const Navbar: React.FC = () => {
                                     aria-expanded="false"
                                     data-dropdown-toggle="user-dropdown"
                                     data-dropdown-placement="bottom"
+                                    onClick={() =>
+                                        setShowUserDropdown(!showUserDropdown)
+                                    }
                                 >
                                     <span className="sr-only">
                                         Open user menu
@@ -58,7 +62,16 @@ const Navbar: React.FC = () => {
                                 {/* Dropdown menu */}
                                 <div
                                     id="user-dropdown"
-                                    className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
+                                    className={`z-50 ${
+                                        showUserDropdown ? 'block' : 'hidden'
+                                    } my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow z-10`}
+                                    style={{
+                                        position: 'absolute',
+                                        inset: '0px auto auto 0px',
+                                        margin: '0px',
+                                        transform:
+                                            'translate3d(1232.8px, 62.4px, 0px)',
+                                    }}
                                 >
                                     <div className="px-4 py-3">
                                         <span className="block text-sm text-gray-900">
@@ -72,6 +85,14 @@ const Navbar: React.FC = () => {
                                         className="py-2"
                                         aria-labelledby="user-menu-button"
                                     >
+                                        <li>
+                                            <NavLink
+                                                to="/my-profile"
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            >
+                                                My Profile
+                                            </NavLink>
+                                        </li>
                                         <li>
                                             <NavLink
                                                 to="/change-password"
