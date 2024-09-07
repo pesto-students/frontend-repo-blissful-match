@@ -132,7 +132,7 @@ describe('test selectAllTasks', () => {
                     updated_at: '2024-09-07T02:38:36.116Z',
                     created_at: '2024-09-07T02:38:36.116Z',
                     __v: 0,
-                    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZGJiY2FjOGVkMDU5NmI0N2QxZGFkMyIsImlhdCI6MTcyNTY5MTI0NywiZXhwIjoxNzMzNDY3MjQ3fQ.-k3JS4YmOyOjuwklbino3oZx9OsGYV-Xw-5qbCDUjK8',
+                    token: '',
                 },
                 token: '',
             },
