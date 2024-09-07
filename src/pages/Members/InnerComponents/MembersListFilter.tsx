@@ -23,7 +23,9 @@ const MembersListFilter: React.FC<{
     );
     const loggedInUserInfo = useSelector(loggedInUser);
     const [lookingFor, setLookingFor] = useState(
-        loggedInUserInfo?.gender === 'Male' ? 'Female' : 'Male'
+        loggedInUserInfo?.physical_attributes?.gender === 'Male'
+            ? 'Female'
+            : 'Male'
     );
     const [religion, setReligion] = useState('');
 

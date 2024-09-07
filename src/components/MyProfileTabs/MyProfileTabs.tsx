@@ -6,8 +6,8 @@ const MyProfileTabs: React.FC<{ activeTab: string; balance?: string }> = ({
     balance = undefined,
 }) => {
     return (
-        <div className="bg-bm-primary flex">
-            <span>
+        <div className="bg-bm-primary flex justify-between items-center w-full">
+            <span className="text-start">
                 <ul className="inline-flex">
                     <li
                         className={`${
@@ -42,7 +42,9 @@ const MyProfileTabs: React.FC<{ activeTab: string; balance?: string }> = ({
                     </li>
                 </ul>
             </span>
-            <span>{balance ? <p>BALANCE: {balance}</p> : ''}</span>
+            <span className="mx-8 text-bm-secondary font-bold my-auto text-end">
+                {balance ? <p>BALANCE: {balance}</p> : ''}
+            </span>
         </div>
     );
 };

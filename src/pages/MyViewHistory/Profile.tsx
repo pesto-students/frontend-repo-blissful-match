@@ -1,92 +1,351 @@
-import pooja from '@assets/images/best-tanks-tops-8 1.png';
-import blueGirl from '@assets/images/blue girl.png';
-import blackTopGirl from '@assets/images/High-Waist-Denim-Shorts-Women-Summer.png';
-
-// Profile interface to define the shape of profile data
-export interface Profile {
-    email: string;
-    phone: string;
-    about: string;
-    viewedAtDate: Date | string;
-    viewedAtTime: string;
-    id: string;
-    name: string;
-    age: number;
+export interface UserProfile {
+    viewed_at_date: string;
+    viewed_at_time: string;
+    created_at: string;
+    user_id: string;
+    first_name: string;
+    last_name: string;
+    date_of_birth: string;
+    gender: string;
+    religion: string;
+    email_address: string;
+    mobile: number;
     qualification: string;
-    occupation: string;
-    income: string;
-    maritalStatus: string;
-    location: string;
-    height: string;
+    annual_income: string;
     caste: string;
-    motherTongue: string;
-    subCaste?: string;
-    imageUrl: string | '*.png';
-    isLiked: boolean;
+    full_address: string;
+    location: string;
+    about_me: string;
+    profile_image: string;
+    maritial_status: string;
+    status: string;
 }
 
-// Dummy profile data
-export const profiles: Profile[] = [
-    {
-        id: '123',
-        name: 'Pooja L.',
-        email: 'example@abc.com',
-        phone: '1234567809',
-        about: `I'm a 30-year-old finance manager with a BBA and MBA. I love balancing my professional life with my passion for cooking, reading, and watching movies—especially romantic and horror genres. Music is my go-to for relaxation and fun.
-I'm seeking a partner who is kind, responsible, and understanding, someone who appreciates the little joys in life and values mutual respect in a relationship. If you share these values and are looking for a meaningful connection, I'd love to get to know you better.`,
-        viewedAtDate: '24-09-2024',
-        viewedAtTime: '4:00 pm',
-        age: 30,
-        qualification: 'MBA',
-        occupation: 'Finance Manager',
-        income: '45-50 LPA',
-        maritalStatus: 'Single',
-        location: 'Mumbai',
-        height: '5.2',
-        caste: 'Punjabi',
-        motherTongue: 'Punjabi',
-        imageUrl: pooja,
-        isLiked: true,
-    },
-    {
-        id: '456',
-        name: 'Jayshree',
-        email: 'example@abc.com',
-        phone: '1234567809',
-        about: `At 38, I have established a fulfilling career in interior design with my own startup, and I value the importance of good nature, responsibility, and meaningful connections. I cherish time spent with friends and find joy in music. Now, I'm seeking a partner who shares similar values—someone who is good-natured, understanding, and responsible. It's important to me to find someone who appreciates the balance of personal growth, mutual respect, and companionship. I believe a strong relationship is built on these foundations, and I'm ready to embark on this journey with someone who shares this vision.`,
-        viewedAtDate: '24-09-2024',
-        viewedAtTime: '4:00 pm',
-        age: 38,
-        qualification: 'Interior Designing',
-        occupation: 'Entrepreneur',
-        income: '35-40 LPA',
-        maritalStatus: 'Single',
-        location: 'Assam',
-        height: '5.6',
-        caste: 'Assami',
-        motherTongue: 'Assami',
-        imageUrl: blueGirl,
-        isLiked: false,
-    },
-    {
-        id: '789',
-        name: 'Raveena T.',
-        email: 'example@abc.com',
-        phone: '1234567809',
-        about: `I'm a 34-year-old fashion designer with a master's degree and my own boutique. Creativity is at the heart of everything I do, whether it's designing clothes or crafting DIY projects from waste materials. In my free time, I enjoy listening to music and cherishing moments with friends and family.
-I'm seeking a partner who is romantic, understanding, and appreciates the beauty in transforming the ordinary into something extraordinary. If you value creativity, connection, and the joy of making something new from the old, I'd love to connect with you`,
-        age: 34,
-        viewedAtDate: '24-09-2024',
-        viewedAtTime: '4:00 pm',
-        qualification: 'Fashion Designing',
-        occupation: 'Entrepreneur',
-        income: '35-45 LPA',
-        maritalStatus: 'Single',
-        location: 'Kolkata',
-        height: '5.3',
-        caste: 'Bengali',
-        motherTongue: 'Bangala',
-        imageUrl: blackTopGirl,
-        isLiked: true,
-    },
-];
+export interface ViewedProfilesResponse {
+    status: string;
+    totalViewedLimit: number;
+    totalPages: number;
+    currentPage: number;
+    pageSize: number;
+    usedViewedLimit: number;
+    data: UserProfile[];
+}
+
+// export const viewHistoryData: ViewedProfilesResponse = {
+//     status: 'success',
+//     totalViewedLimit: 110,
+//     usedViewedLimit: 96,
+//     data: [
+//         {
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '06:17 AM',
+//             created_at: '2024-09-07T06:17:28.715Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '06:03 AM',
+//             created_at: '2024-09-07T06:03:49.612Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '11:10 AM',
+//             created_at: '2024-09-07T05:40:26.121Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '11:09 AM',
+//             created_at: '2024-09-07T05:39:59.811Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '11:09 AM',
+//             created_at: '2024-09-07T05:39:18.942Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '11:07 AM',
+//             created_at: '2024-09-07T05:37:59.022Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             viewed_at_date: '2024-07-07',
+//             viewed_at_time: '10:52 AM',
+//             created_at: '2024-09-07T05:22:20.213Z',
+//             user_id: '66dbc1748ed0596b47d1db82',
+//             first_name: 'Neha',
+//             last_name: 'Joshi',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'neha@malinator.com',
+//             mobile: 8690415699,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-09-05T19:07:18.412Z',
+//             viewed_at_date: '2024-09-07',
+//             viewed_at_time: '11:52 AM',
+//             user_id: '66dbc1508ed0596b47d1db74',
+//             first_name: 'Sanya',
+//             last_name: 'Mehta',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'sanya@malinator.com',
+//             mobile: 8690415697,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-09-05T19:05:50.508Z',
+//             viewed_at_date: '2024-08-12',
+//             viewed_at_time: '09:52 AM',
+//             user_id: '66dbc1398ed0596b47d1db6d',
+//             first_name: 'Tanya',
+//             last_name: 'Gupta',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'tanya@malinator.com',
+//             mobile: 8690415696,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-09-05T18:51:13.620Z',
+//             viewed_at_date: '2024-09-01',
+//             viewed_at_time: '07:52 AM',
+//             user_id: '66dbc1278ed0596b47d1db66',
+//             first_name: 'Ritika',
+//             last_name: 'Singh',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'ritika@malinator.com',
+//             mobile: 8690415695,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-08-31T18:20:04.765Z',
+//             viewed_at_date: '2024-02-07',
+//             viewed_at_time: '05:75 AM',
+//             user_id: '66dbc0ad8ed0596b47d1db3c',
+//             first_name: 'Aarohi',
+//             last_name: 'Patel',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'aarohi@malinator.com',
+//             mobile: 8690415690,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-08-31T18:20:04.765Z',
+//             viewed_at_date: '2024-04-21',
+//             viewed_at_time: '10:52 AM',
+//             user_id: '66dbc0c18ed0596b47d1db43',
+//             first_name: 'Meera',
+//             last_name: 'Sharma',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'meera@malinator.com',
+//             mobile: 8690415691,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-08-31T18:20:04.765Z',
+//             viewed_at_date: '2024-03-21',
+//             viewed_at_time: '11:52 AM',
+//             user_id: '66dbc0d58ed0596b47d1db4a',
+//             first_name: 'Isha',
+//             last_name: 'Desai',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'isha@malinator.com',
+//             mobile: 8690415692,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//         {
+//             created_at: '2024-08-31T18:20:04.765Z',
+//             viewed_at_date: '2024-04-18',
+//             viewed_at_time: '04:52 AM',
+//             user_id: '66dbc0fd8ed0596b47d1db58',
+//             first_name: 'Kavya',
+//             last_name: 'Nair',
+//             date_of_birth: '2000-08-08T00:00:00.000Z',
+//             gender: 'Female',
+//             religion: '66c17caddbd55f67967501ed',
+//             email_address: 'kavya@malinator.com',
+//             mobile: 8690415694,
+//             qualification: 'MBA',
+//             annual_income: '14-16 Lakhs',
+//             caste: '66c18e4385ed11479b6d611e',
+//             full_address:
+//                 'RK Mission Rd, Bishnu Rabha Nagar, Birubari,  Guwahati, Assam 781016, India',
+//             profile_image:
+//                 'https://media.istockphoto.com/id/2083393992/photo/radiant-young-woman-with-curly-brown-hair-outdoors.jpg?b=1&s=612x612&w=0&k=20&c=mgoLW9kRAihtOCx1R5CNHhTZurqSTQWKZREOVjU-Ft8=',
+//             maritial_status: 'UNMARRIED',
+//             status: 'Active',
+//         },
+//     ],
+//     totalPages: 1,
+//     currentPage: 1,
+//     pageSize: 100,
+// };

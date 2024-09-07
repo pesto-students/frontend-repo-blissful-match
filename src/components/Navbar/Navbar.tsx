@@ -75,10 +75,10 @@ const Navbar: React.FC = () => {
                                 >
                                     <div className="px-4 py-3">
                                         <span className="block text-sm text-gray-900">
-                                            {`${info.first_name} ${info.last_name}`}
+                                            {`${info.basic_info.first_name} ${info.basic_info.last_name}`}
                                         </span>
                                         <span className="block text-sm  text-gray-500 truncate">
-                                            {info.email_address}
+                                            {info.basic_info.email_address}
                                         </span>
                                     </div>
                                     <ul

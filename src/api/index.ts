@@ -193,8 +193,8 @@ export async function getViewHistory(
             }
         );
 
-        if (response.data.data) {
-            return MapUserProfilesToProfiles(response.data.data);
+        if (response.data) {
+            return response.data;
         } else {
             return [];
         }
